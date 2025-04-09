@@ -56,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(
-                height: 80,
+                height: 81,
               ),
               Container(
                 child: Padding(
