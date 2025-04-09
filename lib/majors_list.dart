@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:guide_field/arts.dart';
+import 'package:guide_field/constants.dart';
 import 'package:guide_field/education.dart';
 import 'package:guide_field/engineer.dart';
 import 'package:guide_field/islamic_study.dart';
@@ -32,8 +33,18 @@ class _MajorsListState extends State<MajorsList> {
 
 
     return Scaffold(backgroundColor: Colors.white,
-    appBar: AppBar(backgroundColor: Colors.teal,
-    title: const Text('رهنمای رشته'),),
+    appBar: CustomAppBar(
+      title: 'رهنمایی رشته',
+      //leading: Icon(Icons.account_circle_rounded, weight: 200),
+      actions: [
+        Icon(Icons.more_vert),
+        
+      ],
+      backgroundColor: Colors.blue,
+
+    ),
+    // appBar: AppBar(backgroundColor: Colors.teal,
+    // title: const Text('رهنمای رشته'),),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -590,4 +601,39 @@ class _MajorsListState extends State<MajorsList> {
     ),
     );
   }
+}
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final Widget? leading;
+  final List<Widget>? actions;
+  const CustomAppBar({super.key, required this.title, this.leading, this.actions, required MaterialColor backgroundColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: grandientStartColor,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(35),
+          bottomRight: Radius.circular(35),
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+      child: AppBar(
+        elevation: 0,
+      title: Padding(
+        padding: const EdgeInsets.only(left: 50.0),
+        child: Text(title),
+      ),titleTextStyle: TextStyle(color: Colors.white,
+          fontSize: 24, fontFamily: 'Avenir',
+          fontWeight: FontWeight.w900),
+        leading: leading,
+        actions: actions,
+        backgroundColor: grandientStartColor
+      ),
+    );
+  }
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight+20);
+
 }
